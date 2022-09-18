@@ -55,12 +55,13 @@ public static class MauiProgram
 
 		//views
 
-		builder.Services.AddSingleton<MainMenu>();
-		builder.Services.AddTransient<StoryMenu>();
+		builder.Services.AddTransient<MainMenu>();
+		builder.Services.AddSingleton<StoryMenu>();
+		builder.Services.AddSingleton<NumberCustomMenu>();
+
 		builder.Services.AddTransient<NumberGame>();
 		builder.Services.AddTransient<YouLost>();
 		builder.Services.AddTransient<YouWon>();
-		builder.Services.AddTransient<NumberCustomMenu>();
 		builder.Services.AddTransient<NumberCustomLevelConfiguration>();
 		builder.Services.AddTransient<NumberCustomLevelHistory>();
 	}

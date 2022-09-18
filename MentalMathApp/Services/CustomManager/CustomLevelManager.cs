@@ -10,6 +10,8 @@ public interface ICustomLevelManager
 {
     MutableCustomConfiguration[] GetConfigurations(NumberTypes type);
     void UpdateMutableConfigurations();
+    void ConfigurationPlayed(NumberConfigurationBase configuration);
+    Task<NumberConfigurationBase> GetLastPlayedConfiguration();
 }
 
 public class CustomLevelManager : ICustomLevelManager
@@ -37,6 +39,29 @@ public class CustomLevelManager : ICustomLevelManager
         // And this project is probably not going to be developed any further so whatever.
 
         _storage.SaveCustomConfigurations(_configurations);
+    }
+
+    public void ConfigurationPlayed(NumberConfigurationBase configuration)
+    {
+        if (!_configurations.Any(x => x.ConfigurationKey.Equals(configuration.ConfigurationKey)))
+        {
+            return;
+        }
+
+        _storage.SaveLastPlayedCustomConfiguration(configuration.ConfigurationKey);
+    }
+
+    public async Task<NumberConfigurationBase> GetLastPlayedConfiguration()
+    {
+        var configKey = await _storage.GetLastPlayedCustomConfiguration();
+        if (string.IsNullOrEmpty(configKey))
+        {
+            return null;
+        }
+
+        var config = _configurations.FirstOrDefault(x => x.ConfigurationKey.Equals(configKey));
+
+        return config;
     }
 
     private async Task LoadConfigurationsAsync()

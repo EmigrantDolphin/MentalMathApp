@@ -17,6 +17,8 @@ public interface IDeviceStorage
 	Task<List<HistoryModel>> GetHistoryModels(string levelKey);
 	Task SaveHistoryModels(string levelKey, List<HistoryModel> models);
 	void Clear(string key);
+	void SaveLastPlayedCustomConfiguration(string key);
+	Task<string> GetLastPlayedCustomConfiguration();
 }
 
 public class DeviceStorage : IDeviceStorage
@@ -116,6 +118,21 @@ public class DeviceStorage : IDeviceStorage
 		var result = JsonConvert.SerializeObject(models);
 
 		await _storage.SetAsync(levelKey, result);
+	}
+
+	public void SaveLastPlayedCustomConfiguration(string configurationKey)
+	{
+		if (string.IsNullOrEmpty(configurationKey))
+		{
+			return;
+		}
+
+		_storage.SetAsync(Keys.Custom.CustomConfigurationsLastPlayedGame, configurationKey);
+	}
+
+	public async Task<string> GetLastPlayedCustomConfiguration()
+	{
+		return await _storage.GetAsync(Keys.Custom.CustomConfigurationsLastPlayedGame);
 	}
 
 	public void Clear(string key) => _storage.Remove(key);
