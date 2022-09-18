@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MentalMathApp.Views.MainMenu"
+             xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
+             Shell.PresentationMode="NotAnimated"
+             x:DataType="viewModel:MainMenuViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout Spacing="40" Padding="60" Margin="0, 60, 0,0">
+        <Grid>
+            <VerticalStackLayout Spacing="20">
+                <Button
+                    Grid.Row="0"
+                    Command="{Binding GoToStoryMenuCommand}"
+                    Text="Story"
+                    Style="{StaticResource ButtonMenu}" />
+                <Button Grid.Row="1" Text="Compete" Style="{StaticResource ButtonMenu}" />
+            </VerticalStackLayout>
+        </Grid>
+        <Button Text="}Last played game{" Style="{StaticResource ButtonMenuDisabled}"/>
+        <Grid>
+            <VerticalStackLayout Spacing="20">
+                <Button
+                    Text="Integers"
+                    Style="{StaticResource ButtonMenu}"
+                    Command="{Binding GoToIntegerNumberCustomMenuCommand}"/>
+                <Button
+                    Text="Decimals"
+                    Style="{StaticResource ButtonMenu}"
+                    Command="{Binding GoToRationalNumberCustomMenuCommand}"/>
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

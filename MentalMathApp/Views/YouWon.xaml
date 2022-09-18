@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MentalMathApp.Views.YouWon"
+             xmlns:viewmodel="clr-namespace:MentalMathApp.ViewModels"
+             x:DataType="viewmodel:YouWonViewModel"
+             Shell.PresentationMode="NotAnimated"
+             Shell.NavBarIsVisible="False">
+    <VerticalStackLayout>
+        <Label 
+            FontSize="24"
+            Margin="0, 100, 0, 40"
+            Text="Congratulations!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label
+            HorizontalOptions="Center"
+            FontSize="20"
+            Margin="0, 0, 0, 40"
+            Text="{Binding BeatenLevelText}" />
+
+        <Button
+            Command="{Binding NextLevelCommand}"
+            WidthRequest="150"
+            Margin="0, 0, 0, 40"
+            Text="Next level">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding HasNextLevel}"
+                             Value="False">
+                    <Setter Property="IsVisible"
+                            Value="False" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+        <Button 
+            Command="{Binding AgainCommand}"
+            Margin="0, 0, 0, 40"
+            WidthRequest="150"
+            Text="Again!" />
+        <Button 
+            Command="{Binding GoToMenuCommand}"
+            WidthRequest="150"
+            Text="Go to menu" />
+    </VerticalStackLayout>
+</ContentPage>

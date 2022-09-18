@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MentalMathApp.Views.NumberGame"
+             xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
+             x:DataType="viewModel:NumberGameViewModel"
+             Shell.PresentationMode="NotAnimated"
+             Shell.NavBarIsVisible="False">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding SelectedLevelText}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" >
+        </Label>
+        <Label
+            Text="{Binding EquationsAnsweredText}" />
+        <Grid ColumnDefinitions="182,Auto,*"
+                Margin="0, 0, 0, 100"
+              >
+            <Label
+                Text="{Binding Timer}"
+                Grid.Column="1"
+                FontSize="25"
+                TextColor="Black"/>
+        </Grid>
+
+        <Frame BorderColor="Black"
+               CornerRadius="60"
+               WidthRequest="200"
+               Margin="0, 0, 0, 100">
+            <Label Text="{Binding Equation}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   TextColor="Black"/>
+        </Frame>
+
+        <CollectionView ItemsSource="{Binding Answers}" HorizontalOptions="Start" >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate >
+                <DataTemplate >
+                    <VerticalStackLayout>
+                        <Button Text="{Binding}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NumberGameViewModel}}, Path=SubmitAnswerCommand}"
+                                CommandParameter="{Binding}"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                FontSize="40"
+                                HeightRequest="80"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
