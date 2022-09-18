@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="light1">#fdfdfd</Color>
+    <Color x:Key="light2">#ececea</Color>
+    <Color x:Key="light3">#e3e3e1</Color>
+    <Color x:Key="light4">#bdbdc7</Color>
+    <Color x:Key="light5">#505050</Color>
+</ResourceDictionary>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MentalMathApp.Views.NumberCustomLevelHistory"
+             xmlns:viewmodel="clr-namespace:MentalMathApp.ViewModels.NumberCustom"
+             x:DataType="viewmodel:NumberCustomLevelHistoryViewModel"
+             Shell.PresentationMode="NotAnimated"
+             Shell.BackgroundColor="{StaticResource light2}"
+             Shell.ForegroundColor="Black">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoBackCommand}" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <ScrollView Margin="0, 40, 0, 0">
+            <StackLayout BindableLayout.ItemsSource="{Binding HistoryDetailsArray}"
+                         Spacing="20">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodel:HistoryDetails">
+                        <Grid RowDefinitions="Auto, Auto, Auto"
+                              ColumnDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                              ColumnSpacing="20"
+                              RowSpacing="2"
+                              HorizontalOptions="Center">
+                            <Frame Grid.RowSpan="2"
+                                   Grid.Column="0"
+                                   BackgroundColor="Red"
+                                   CornerRadius="90"
+                                   WidthRequest="20"
+                                   HeightRequest="20">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame"
+                                                 Binding="{Binding Won}"
+                                                 Value="True">
+                                        <Setter Property="BackgroundColor"
+                                                Value="Green"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                            </Frame>
+
+                            <Label Text="S/E"
+                                   Grid.Column="1"
+                                   Grid.Row="0"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding SecondsPerEquation}"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="E/G"
+                                   Grid.Column="2"
+                                   Grid.Row="0"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding EquationsPerGame}"
+                                   Grid.Column="2"
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="Avg/E"
+                                   Grid.Column="3"
+                                   Grid.Row="0"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding AverageSecondsPerEquation}"
+                                   Grid.Column="3"
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="Imprv"
+                                   Grid.Column="4"
+                                   Grid.Row="0"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding ImprovementInSeconds}"
+                                   Grid.Column="4"
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"
+                                   TextColor="Green">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsImprovementPositive}"
+                                                 Value="True">
+                                        <Setter Property="TextColor"
+                                                Value="Red"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <Label Text="Oper"
+                                   Grid.Column="5"
+                                   Grid.Row="0"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding Operations}"
+                                   Grid.Column="5"
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"/>
+                            <Rectangle
+                                VerticalOptions="Center"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="6"
+                                Fill="Gray"
+                                HeightRequest="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+            <Label Text="History yet to be made"
+                   HorizontalOptions="Center"
+                   FontSize="24"/>
+            <Label Text="(Play some games for history to appear)"
+                   HorizontalOptions="Center"/>
+            <VerticalStackLayout.Triggers>
+                <DataTrigger TargetType="VerticalStackLayout"
+                             Binding="{Binding IsHistoryEmpty}"
+                             Value="False">
+                    <Setter Property="IsVisible"
+                            Value="False"/>
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
+        </VerticalStackLayout>
+
+        <Button Text="Reset"
+                HeightRequest="25"
+                WidthRequest="43"
+                Padding="0"
+                VerticalOptions="End"
+                IsEnabled="{Binding IsNotBusy}"
+                Command="{Binding ResetHistoryCommand}"
+                HorizontalOptions="End"
+                Margin="0, 0, 10, 15">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding IsHistoryEmpty}"
+                             Value="True">
+                    <Setter Property="IsVisible"
+                            Value="False"/>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+    </Grid>
+</ContentPage>
