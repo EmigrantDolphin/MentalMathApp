@@ -3,14 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MentalMathApp.Views.MainMenu"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
-             Shell.PresentationMode="NotAnimated"
              x:DataType="viewModel:MainMenuViewModel">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <VerticalStackLayout Spacing="40" Padding="60" Margin="0, 60, 0,0">
         <Grid>
             <VerticalStackLayout Spacing="20">
@@ -19,12 +13,17 @@
                     Command="{Binding GoToStoryMenuCommand}"
                     Text="Story"
                     Style="{StaticResource ButtonMenu}" />
-                <Button Grid.Row="1" Text="Compete" Style="{StaticResource ButtonMenu}" />
+                <Button Grid.Row="1"
+                        Text="Compete"
+                        Style="{StaticResource ButtonMenu}"
+                        Command="{Binding ShowCompeteMessageCommand}"/>
             </VerticalStackLayout>
         </Grid>
-        <Button Text="}Last played game{" Style="{StaticResource ButtonMenuDisabled}"/>
         <Grid>
-            <VerticalStackLayout Spacing="20">
+            <VerticalStackLayout Spacing="20" Grid.Row="1">
+                <Label Text="Custom games"
+                       FontSize="18"
+                       HorizontalOptions="Center"/>
                 <Button
                     Text="Integers"
                     Style="{StaticResource ButtonMenu}"
@@ -35,5 +34,11 @@
                     Command="{Binding GoToRationalNumberCustomMenuCommand}"/>
             </VerticalStackLayout>
         </Grid>
+
+        <Button Text="Last played custom game"
+                Command="{Binding GoToLastPlayedConfigurationGameCommand}"
+                IsEnabled="{Binding IsLastPlayedConfigurationAvailable}"
+                Style="{StaticResource ButtonMenu}"/>
+
     </VerticalStackLayout>
 </ContentPage>

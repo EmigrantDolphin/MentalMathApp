@@ -10,9 +10,9 @@ public class RationalLevel2Configuration : NumberConfigurationBase
 
     public override int SecondsPerEquation => 10;
 
-    public override int NumberOfEquations => 1;
+    public override int NumberOfEquations => 10;
 
-    public override NumberOperations[] Operations => new NumberOperations[] { NumberOperations.Subtraction };
+    public override NumberOperations[] Operations => new NumberOperations[] { NumberOperations.Addition };
 
     public override int IntervalFrom => 0;
 

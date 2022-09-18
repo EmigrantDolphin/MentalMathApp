@@ -36,6 +36,11 @@ public static class Navigate
 
     public static void ToNumberGame(NumberConfigurationBase configuration)
     {
+        if (configuration is null)
+        {
+            return;
+        }
+
         var parameters = new Dictionary<string, object>
         {
             {nameof(NumberGameQueryProps.LevelConfiguration), configuration }

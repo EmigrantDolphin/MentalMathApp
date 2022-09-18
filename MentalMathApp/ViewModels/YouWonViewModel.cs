@@ -20,6 +20,7 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
     private readonly ILevelManager _levelManager;
     private readonly IHistoryManager _historyManager;
     private NumberConfigurationBase _beatenConfiguration;
+    private string _nextLevel = string.Empty;
 
     public YouWonViewModel(ILevelManager levelManager, IHistoryManager historyManager)
     {
@@ -57,8 +58,6 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
             _historyManager.AppendHistory(_beatenConfiguration, true, averageSecondsPerEquation);
         }
     }
-
-    private string _nextLevel = string.Empty;
 
     [ObservableProperty]
     private bool hasNextLevel = false;

@@ -1,2 +1,6 @@
-Decimal custom games
-	.1 : from 0.1 to 10 ?           Positive value can be configured.
+TODO:
+	Figure out why selection doesn't work. ???
+	Balance difficulty - whole day. Find someone too
+	Fix integer division - 30m. (Do to random numbers, multiply them and then take result and one of the multiplied)
+	Use IsBusy on buttons - 10 mins
+	Styling - 420 hours

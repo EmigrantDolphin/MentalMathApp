@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MentalMathApp.LevelConfigurations;
+using MentalMathApp.LevelConfigurations.Enums;
 using MentalMathApp.LevelConfigurations.Models;
 using MentalMathApp.Navigation;
+using MentalMathApp.Services.CustomManager;
 using MentalMathApp.Services.EquationFormers;
 
 namespace MentalMathApp.ViewModels;
@@ -11,12 +13,19 @@ public enum NumberGameQueryProps { LevelConfiguration };
 
 public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
 {
+    private readonly ICustomLevelManager _customLevelManager;
+
     private NumberConfigurationBase _numberConfiguration;
     private NumberEquationFormer _numberEquationFormer;
 
     private string _correctAnswer;
     private int _numberOfEquations = 0;
     private List<int> _secondsPerLevel = new();
+
+    public NumberGameViewModel(ICustomLevelManager customLevelManager)
+    {
+        _customLevelManager = customLevelManager;
+    }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -28,6 +37,11 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
         EquationsAnswered = 0;
 
         SetNewEquation();
+
+        if (_numberConfiguration.GameType == GameType.Custom)
+        {
+            _customLevelManager.ConfigurationPlayed(_numberConfiguration);
+        }
     }
 
     [ObservableProperty]

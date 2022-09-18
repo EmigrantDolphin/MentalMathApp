@@ -11,5 +11,6 @@ public static class Keys
     public static class Custom
     {
         public static string CustomConfigurations = "CustomConfigurations";
+        public static string CustomConfigurationsLastPlayedGame = "CustomConfigurationsLastPlayedGame";
     }
 }
