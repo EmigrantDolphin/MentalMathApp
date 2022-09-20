@@ -29,11 +29,14 @@ public class NumberEquationFormer
 	{
 		EquationsGenerated++;
 
-		var randomFirstNumber = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
-		var randomSecondNumber = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
-
 		var randomOperationIndex = _random.Next(0, _numberConfiguration.Operations.Count());
 		var randomOperation = _numberConfiguration.Operations[randomOperationIndex];
+
+		var (randomFirstNumber, randomSecondNumber) =
+			GetRandomNumbers(
+				randomOperation,
+				_numberConfiguration.IntervalFrom,
+				_numberConfiguration.IntervalTo);
 
 		var equation = $"{randomFirstNumber} {randomOperation.GetMathematicalSymbol()} {randomSecondNumber}";
 
@@ -41,6 +44,24 @@ public class NumberEquationFormer
 
 		var possibleAnswers = GetPossibleAnswers(answer);
 		return new Equation<int>(equation, randomFirstNumber, randomSecondNumber, randomOperation, answer, possibleAnswers);
+	}
+
+	private (int, int) GetRandomNumbers(NumberOperations numberOperator, int from, int to)
+	{
+		if (numberOperator == NumberOperations.Division)
+		{
+            var first = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
+            var second = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
+
+			var product = first * second;
+
+			return (product, first);
+		}
+
+		var randomFirstNumber = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
+		var randomSecondNumber = _random.Next(_numberConfiguration.IntervalFrom, _numberConfiguration.IntervalTo);
+
+		return (randomFirstNumber, randomSecondNumber);
 	}
 
 	public Equation<decimal> NewRationalEquation()

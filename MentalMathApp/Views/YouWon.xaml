@@ -22,6 +22,7 @@
 
         <Button
             Command="{Binding NextLevelCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             WidthRequest="150"
             Margin="0, 0, 0, 40"
             Text="Next level">
@@ -36,11 +37,13 @@
         </Button>
         <Button 
             Command="{Binding AgainCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             Margin="0, 0, 0, 40"
             WidthRequest="150"
             Text="Again!" />
         <Button 
             Command="{Binding GoToMenuCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             WidthRequest="150"
             Text="Go to menu" />
     </VerticalStackLayout>
