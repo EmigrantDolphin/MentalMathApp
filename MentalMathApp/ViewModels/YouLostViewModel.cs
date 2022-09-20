@@ -68,17 +68,21 @@ public partial class YouLostViewModel : BaseViewModel, IQueryAttributable
     private NumberConfigurationBase _configuration;
 
     [RelayCommand]
-    private void TryAgain()
+    private async Task TryAgainAsync()
     {
-        Navigate.GoBack();
+        IsBusy = true;
+        await Navigate.GoBack();
+        IsBusy = false;
     }
 
     [RelayCommand]
-    private void GoToMenu()
+    private async Task GoToMenuAsync()
     {
         if (_configuration.GameType == GameType.Story)
         {
-            _ = Navigate.ToStoryMenu();
+            IsBusy = true;
+            await Navigate.ToStoryMenu();
+            IsBusy = false;
         }
 
         if (_configuration.GameType == GameType.Custom)

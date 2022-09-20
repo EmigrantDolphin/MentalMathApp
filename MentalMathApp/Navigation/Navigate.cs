@@ -9,9 +9,9 @@ namespace MentalMathApp.Navigation;
 
 public static class Navigate
 {
-    public static void GoBack()
+    public static async Task GoBack()
     {
-        Shell.Current.GoToAsync("..", false);
+        await Shell.Current.GoToAsync("..", false);
     }
 
     public static async Task ToStoryMenu()
@@ -49,24 +49,24 @@ public static class Navigate
         Shell.Current.GoToAsync(nameof(NumberGame), false, parameters);
     }
 
-    public static void ToCustomLevelConfiguration(MutableCustomConfiguration configuration)
+    public static async Task ToCustomLevelConfiguration(MutableCustomConfiguration configuration)
     {
         var parameters = new Dictionary<string, object>
         {
             {nameof(NumberCustomConfigurationParameters.MutableConfiguration), configuration }
         };
 
-        Shell.Current.GoToAsync(nameof(NumberCustomLevelConfiguration), false, parameters);
+        await Shell.Current.GoToAsync(nameof(NumberCustomLevelConfiguration), false, parameters);
     }
 
-    public static void ToCustomLevelHistory(NumberConfigurationBase configuration)
+    public static async Task ToCustomLevelHistory(NumberConfigurationBase configuration)
     {
         var parameters = new Dictionary<string, object>
         {
             {nameof(NumberCustomLevelHistoryParameters.Configuration), configuration }
         };
 
-        Shell.Current.GoToAsync(nameof(NumberCustomLevelHistory), false, parameters);
+        await Shell.Current.GoToAsync(nameof(NumberCustomLevelHistory), false, parameters);
     }
 
     public static void ToYouLostWrongAnswer(string equation, string answer, string correctAnswer, NumberConfigurationBase configuration)

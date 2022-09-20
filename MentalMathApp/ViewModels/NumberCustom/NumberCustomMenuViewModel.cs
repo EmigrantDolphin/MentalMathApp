@@ -42,18 +42,24 @@ public partial class NumberCustomMenuViewModel : NumberCustomBaseViewModel, IQue
     [RelayCommand]
     private void GoToSelectedLevel(NumberConfigurationBase configuration)
     {
+        IsBusy = true;
         Navigate.ToNumberGame(configuration);
+        IsBusy = false;
     }
 
     [RelayCommand]
-    private void GoToConfiguration(MutableCustomConfiguration configuration)
+    private async Task GoToConfigurationAsync(MutableCustomConfiguration configuration)
     {
-        Navigate.ToCustomLevelConfiguration(configuration);
+        IsBusy = true;
+        await Navigate.ToCustomLevelConfiguration(configuration);
+        IsBusy = false;
     }
 
     [RelayCommand]
-    private void GoToHistory(NumberConfigurationBase configuration)
+    private async Task GoToHistoryAsync(NumberConfigurationBase configuration)
     {
-        Navigate.ToCustomLevelHistory(configuration);
+        IsBusy = true;
+        await Navigate.ToCustomLevelHistory(configuration);
+        IsBusy = false;
     }
 }

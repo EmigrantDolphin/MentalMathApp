@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MentalMathApp.Views.MainMenu"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
-             x:DataType="viewModel:MainMenuViewModel">
+             x:DataType="viewModel:MainMenuViewModel"
+             Shell.BackgroundColor="{StaticResource light2}"
+             Shell.ForegroundColor="Black">
 
     <VerticalStackLayout Spacing="40" Padding="60" Margin="0, 60, 0,0">
         <Grid>
@@ -16,7 +18,8 @@
                 <Button Grid.Row="1"
                         Text="Compete"
                         Style="{StaticResource ButtonMenu}"
-                        Command="{Binding ShowCompeteMessageCommand}"/>
+                        Command="{Binding ShowCompeteMessageCommand}"
+                        IsEnabled="{Binding IsNotBusy}"/>
             </VerticalStackLayout>
         </Grid>
         <Grid>
@@ -27,11 +30,13 @@
                 <Button
                     Text="Integers"
                     Style="{StaticResource ButtonMenu}"
-                    Command="{Binding GoToIntegerNumberCustomMenuCommand}"/>
+                    Command="{Binding GoToIntegerNumberCustomMenuCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
                 <Button
                     Text="Decimals"
                     Style="{StaticResource ButtonMenu}"
-                    Command="{Binding GoToRationalNumberCustomMenuCommand}"/>
+                    Command="{Binding GoToRationalNumberCustomMenuCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
             </VerticalStackLayout>
         </Grid>
 

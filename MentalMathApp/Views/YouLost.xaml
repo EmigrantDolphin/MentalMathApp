@@ -84,11 +84,13 @@
             WidthRequest="150"
             Margin="0, 0, 0, 40"
             Command="{Binding TryAgainCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             Text="Try again!" />
         <Button
             WidthRequest="150"
             Margin="0, 0, 0, 40"
             Command="{Binding GoToMenuCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             Text="Go to menu" />
     </VerticalStackLayout>
 </ContentPage>
