@@ -83,7 +83,18 @@ public class CustomLevelManager : ICustomLevelManager
     {
         return new MutableCustomConfiguration[]
         {
-            new MutableCustomConfiguration(new CustomInteger10Configuration())
+            new MutableCustomConfiguration(new CustomInteger10Configuration()),
+            new MutableCustomConfiguration(new CustomInteger100Configuration()),
+            new MutableCustomConfiguration(new CustomInteger1000Configuration()),
+            new MutableCustomConfiguration(new CustomInteger10000Configuration()),
+            new MutableCustomConfiguration(new CustomInteger100000Configuration()),
+            new MutableCustomConfiguration(new CustomInteger1000000Configuration()),
+            new MutableCustomConfiguration(new CustomRational10Configuration()),
+            new MutableCustomConfiguration(new CustomRational100Configuration()),
+            new MutableCustomConfiguration(new CustomRational1000Configuration()),
+            new MutableCustomConfiguration(new CustomRational10000Configuration()),
+            new MutableCustomConfiguration(new CustomRational100000Configuration()),
+            new MutableCustomConfiguration(new CustomRational1000000Configuration()),
         };
     }
 }

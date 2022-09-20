@@ -19,4 +19,10 @@ public partial class StoryMenu : ContentPage
 		_viewModel.GoToMainMenuCommand.Execute(this);
 		return true;
 	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+		_viewModel.LoadLevels();
+	}
 }

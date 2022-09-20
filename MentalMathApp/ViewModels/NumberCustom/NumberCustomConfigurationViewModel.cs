@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MentalMathApp.LevelConfigurations.Custom;
 using MentalMathApp.LevelConfigurations.Enums;
 using MentalMathApp.Services.CustomManager;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace MentalMathApp.ViewModels.NumberCustom;
@@ -29,8 +30,16 @@ public partial class NumberCustomConfigurationViewModel : NumberCustomBaseViewMo
 
         SecondsPerEquation = _configuration.SecondsPerEquation;
         NumberOfEquations = _configuration.NumberOfEquations;
-        AvailableNumberOperations = new NumberOperations[] { NumberOperations.Addition, NumberOperations.Subtraction, NumberOperations.Multiplication, NumberOperations.Division };
-        SelectedNumberOperations = _configuration.Operations;
+
+        AvailableNumberOperationss.Add(NumberOperations.Addition);
+        AvailableNumberOperationss.Add(NumberOperations.Subtraction);
+        AvailableNumberOperationss.Add(NumberOperations.Division);
+        AvailableNumberOperationss.Add(NumberOperations.Multiplication);
+
+        foreach (var operation in _configuration.Operations)
+        {
+            SelectedNumberOperations.Add(operation);
+        }
     }
 
     [ObservableProperty]
@@ -39,19 +48,33 @@ public partial class NumberCustomConfigurationViewModel : NumberCustomBaseViewMo
     [ObservableProperty]
     private int numberOfEquations;
 
-    [ObservableProperty]
-    private NumberOperations[] availableNumberOperations;
+    public ObservableCollection<object> AvailableNumberOperationss { get; set; } = new();
 
-    [ObservableProperty]
-    private NumberOperations[] selectedNumberOperations;
+    private ObservableCollection<object> selectedNumberOperations = new();
+    public ObservableCollection<object> SelectedNumberOperations
+    {
+        get
+        {
+            return selectedNumberOperations;
+        }
+        set
+        {
+            if (selectedNumberOperations != value)
+            {
+                selectedNumberOperations = value;
+            }
+        }
+    }
 
     [RelayCommand]
     private void SaveChanges()
     {
         _configuration.MutableSecondsPerEquation = SecondsPerEquation;
         _configuration.MutableNumberOfEquations = NumberOfEquations;
+        _configuration.MutableOperations = SelectedNumberOperations.Select(x => (NumberOperations) x).ToArray();
 
-        // TODO: Figure out why selected operations are not getting updated
         _levelManager.UpdateMutableConfigurations();
+
+        GoBack();
     }
 }
