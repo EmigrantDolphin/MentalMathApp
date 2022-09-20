@@ -24,17 +24,17 @@ public static class Navigate
         Shell.Current.GoToAsync(nameof(MainMenu), false);
     }
 
-    public static void ToNumberCustomMenu(NumberTypes type)
+    public static async Task ToNumberCustomMenu(NumberTypes type)
     {
         var parameters = new Dictionary<string, object>
         {
             {nameof(NumberCustomMenuParameters.NumberType), type }
         };
 
-        Shell.Current.GoToAsync(nameof(NumberCustomMenu), false, parameters);
+        await Shell.Current.GoToAsync(nameof(NumberCustomMenu), false, parameters);
     }
 
-    public static void ToNumberGame(NumberConfigurationBase configuration)
+    public static async Task ToNumberGame(NumberConfigurationBase configuration)
     {
         if (configuration is null)
         {
@@ -46,7 +46,7 @@ public static class Navigate
             {nameof(NumberGameQueryProps.LevelConfiguration), configuration }
         };
 
-        Shell.Current.GoToAsync(nameof(NumberGame), false, parameters);
+        await Shell.Current.GoToAsync(nameof(NumberGame), false, parameters);
     }
 
     public static async Task ToCustomLevelConfiguration(MutableCustomConfiguration configuration)

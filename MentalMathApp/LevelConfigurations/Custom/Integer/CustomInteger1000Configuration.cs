@@ -2,9 +2,9 @@
 
 namespace MentalMathApp.LevelConfigurations.Custom.Integer;
 
-public class CustomInteger10Configuration : NumberConfigurationBase
+public class CustomInteger1000Configuration : NumberConfigurationBase
 {
-    public override string LevelName => "10";
+    public override string LevelName => "1000";
 
     public override int SecondsPerEquation => 10;
 
@@ -14,7 +14,7 @@ public class CustomInteger10Configuration : NumberConfigurationBase
 
     public override int IntervalFrom => 0;
 
-    public override int IntervalTo => 10;
+    public override int IntervalTo => 1000;
 
     public override GameType GameType => GameType.Custom;
 

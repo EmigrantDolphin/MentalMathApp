@@ -36,12 +36,15 @@ public partial class StoryMenuViewModel : BaseViewModel
     public StoryMenuViewModel(ILevelManager levelManager)
     {
         _levelManager = levelManager;
+    }
 
-        var integerLevels = levelManager.GetLevels(NumberTypes.Integer);
-        var beatenIntegerLevels = levelManager.GetBeatenLevels(NumberTypes.Integer);
+    public void LoadLevels()
+    {
+        var integerLevels = _levelManager.GetLevels(NumberTypes.Integer);
+        var beatenIntegerLevels = _levelManager.GetBeatenLevels(NumberTypes.Integer);
 
-        var rationalLevels = levelManager.GetLevels(NumberTypes.Rational);
-        var beatenRationalLevels = levelManager.GetBeatenLevels(NumberTypes.Rational);
+        var rationalLevels = _levelManager.GetLevels(NumberTypes.Rational);
+        var beatenRationalLevels = _levelManager.GetBeatenLevels(NumberTypes.Rational);
 
         IntegerLevels = LevelModel.ToModel(integerLevels, beatenIntegerLevels).ToArray();
         RationalLevels = LevelModel.ToModel(rationalLevels, beatenRationalLevels).ToArray();
@@ -73,6 +76,7 @@ public partial class StoryMenuViewModel : BaseViewModel
         }
 
         await _levelManager.ResetStory();
+        LoadLevels();
 
         IsBusy = false;
     }

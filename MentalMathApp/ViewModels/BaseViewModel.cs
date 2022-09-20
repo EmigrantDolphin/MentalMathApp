@@ -24,9 +24,9 @@ public partial class BaseViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void GoBack()
+    public void GoBack()
     {
-        Navigate.GoBack();
+        _ = Navigate.GoBack();
     }
 
     [RelayCommand]

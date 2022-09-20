@@ -13,36 +13,34 @@
         <BackButtonBehavior Command="{Binding GoBackCommand}" />
     </Shell.BackButtonBehavior>
 
-    <Grid>
-        <VerticalStackLayout Padding="60">
-            <Label Text="Seconds per equation" />
-            <Entry Keyboard="Numeric" Text="{Binding SecondsPerEquation}"
-                   Margin="0, 0, 0, 30"/>
+    <VerticalStackLayout Padding="60">
+        <Label Text="Seconds per equation" />
+        <Entry Keyboard="Numeric" Text="{Binding SecondsPerEquation}"
+               Margin="0, 0, 0, 30"/>
 
-            <Label Text="Number of equation per game" />
-            <Entry Keyboard="Numeric" Text="{Binding NumberOfEquations}"
-                   Margin="0, 0, 0, 30"/>
+        <Label Text="Number of equation per game" />
+        <Entry Keyboard="Numeric" Text="{Binding NumberOfEquations}"
+               Margin="0, 0, 0, 30"/>
 
-            <Label Text="Operations" />
-            <CollectionView
-                ItemsSource="{Binding AvailableNumberOperations}"
-                SelectionMode="Multiple"
-                SelectedItems="{Binding SelectedNumberOperations, Mode=TwoWay}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="enums:NumberOperations">
-                        <Label Text="{Binding}" FontSize="20" HorizontalOptions="Center"
-                               Padding="0, 10, 0, 10"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-        <Button Text="Save" VerticalOptions="End"
-                Margin="0, 0, 0, 50"
-                WidthRequest="100"
-                Command="{Binding SaveChangesCommand}"
-                IsEnabled="{Binding IsNotBusy}"/>
-    </Grid>
+        <Label Text="Operations" />
+        <CollectionView
+            ItemsSource="{Binding AvailableNumberOperationss}"
+            SelectionMode="Multiple"
+            SelectedItems="{Binding SelectedNumberOperations, Mode=TwoWay}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="enums:NumberOperations">
+                    <Label Text="{Binding}" FontSize="20" HorizontalOptions="Center"
+                           Padding="0, 10, 0, 10"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    <Button Text="Save" VerticalOptions="Start"
+            Margin="0, 50, 0, 50"
+            WidthRequest="100"
+            Command="{Binding SaveChangesCommand}"
+            IsEnabled="{Binding IsNotBusy}"/>
+    </VerticalStackLayout>
 </ContentPage>

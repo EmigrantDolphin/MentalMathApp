@@ -69,7 +69,7 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
     public string BeatenLevelText => $"You've beaten level {currentLevel?.Name}!";
 
     [RelayCommand]
-    private void NextLevel()
+    private async Task NextLevel()
     {
         if (_nextLevel is null)
         {
@@ -78,26 +78,30 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
 
         var configuration = _levelManager.GetConfiguration(new(_nextLevel, CurrentLevel.NumberType));
 
-        Navigate.ToNumberGame(configuration);
+        await Navigate.ToNumberGame(configuration);
     }
 
     [RelayCommand]
-    private void Again()
+    private async Task AgainAsync()
     {
-        Navigate.GoBack();
+        await Navigate.GoBack();
     }
 
     [RelayCommand]
-    private void GoToMenu()
+    private async Task GoToMenuAsync()
     {
+        IsBusy = true;
+
         if (_beatenConfiguration.GameType == GameType.Story)
         {
-            _ = Navigate.ToStoryMenu();
+            await Navigate.ToStoryMenu();
         }
         
         if (_beatenConfiguration.GameType == GameType.Custom)
         {
-            Navigate.ToNumberCustomMenu(_beatenConfiguration.NumberType);
+            await Navigate.ToNumberCustomMenu(_beatenConfiguration.NumberType);
         }
+
+        IsBusy = false;
     }
 }
