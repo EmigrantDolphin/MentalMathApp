@@ -6,6 +6,7 @@ using MentalMathApp.LevelConfigurations.Models;
 using MentalMathApp.Navigation;
 using MentalMathApp.Services.CustomManager;
 using MentalMathApp.Services.EquationFormers;
+using MentalMathApp.Services.EquationFormers.Models;
 
 namespace MentalMathApp.ViewModels;
 
@@ -55,7 +56,7 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
     public string equation;
 
     [ObservableProperty]
-    public string[] answers;
+    public PossibleAnswer[] answers;
 
     [ObservableProperty]
     public int equationsAnswered;
@@ -78,9 +79,9 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
     }
 
     [RelayCommand]
-    private void SubmitAnswer(string answer)
+    private async Task SubmitAnswerAsync(PossibleAnswer answer)
     {
-        if (answer.Equals(_correctAnswer))
+        if (answer.Answer.Equals(_correctAnswer))
         {
             EquationsAnswered++;
             _secondsPerLevel.Add(_numberConfiguration.SecondsPerEquation - Timer);
@@ -89,14 +90,14 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
             {
                 var averageSecondsPerEquation = (decimal)_secondsPerLevel.Average();
                 averageSecondsPerEquation = decimal.Round(averageSecondsPerEquation, 2, MidpointRounding.AwayFromZero);
-                Navigate.ToYouWon(_numberConfiguration, averageSecondsPerEquation);
+                await Navigate.ToYouWonAsync(_numberConfiguration, averageSecondsPerEquation);
                 return;
             }
             SetNewEquation();
         }
         else
         {
-            Navigate.ToYouLostWrongAnswer(Equation, answer, _correctAnswer, _numberConfiguration);
+            await Navigate.ToYouLostWrongAnswerAsync(Equation, answer, _correctAnswer, _numberConfiguration);
         }
     }
 
@@ -122,7 +123,7 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
 
             if (EquationsAnswered < _numberOfEquations)
             {
-                Navigate.ToYouLostTimeExpired(_numberConfiguration);
+                await Navigate.ToYouLostTimeExpiredAsync(_numberConfiguration);
             }
         }, ct);
     }

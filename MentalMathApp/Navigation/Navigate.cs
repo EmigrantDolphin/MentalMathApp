@@ -1,6 +1,7 @@
 ﻿using MentalMathApp.LevelConfigurations;
 using MentalMathApp.LevelConfigurations.Custom;
 using MentalMathApp.LevelConfigurations.Enums;
+using MentalMathApp.Services.EquationFormers.Models;
 using MentalMathApp.ViewModels;
 using MentalMathApp.ViewModels.NumberCustom;
 using MentalMathApp.Views;
@@ -9,22 +10,22 @@ namespace MentalMathApp.Navigation;
 
 public static class Navigate
 {
-    public static async Task GoBack()
+    public static async Task GoBackAsync()
     {
         await Shell.Current.GoToAsync("..", false);
     }
 
-    public static async Task ToStoryMenu()
+    public static async Task ToStoryMenuAsync()
     {
         await Shell.Current.GoToAsync(nameof(StoryMenu), false);
     }
 
-    public static void ToMainMenu()
+    public static async Task ToMainMenuAsync()
     {
-        Shell.Current.GoToAsync(nameof(MainMenu), false);
+        await Shell.Current.GoToAsync(nameof(MainMenu), false);
     }
 
-    public static async Task ToNumberCustomMenu(NumberTypes type)
+    public static async Task ToNumberCustomMenuAsync(NumberTypes type)
     {
         var parameters = new Dictionary<string, object>
         {
@@ -34,7 +35,7 @@ public static class Navigate
         await Shell.Current.GoToAsync(nameof(NumberCustomMenu), false, parameters);
     }
 
-    public static async Task ToNumberGame(NumberConfigurationBase configuration)
+    public static async Task ToNumberGameAsync(NumberConfigurationBase configuration)
     {
         if (configuration is null)
         {
@@ -49,7 +50,7 @@ public static class Navigate
         await Shell.Current.GoToAsync(nameof(NumberGame), false, parameters);
     }
 
-    public static async Task ToCustomLevelConfiguration(MutableCustomConfiguration configuration)
+    public static async Task ToCustomLevelConfigurationAsync(MutableCustomConfiguration configuration)
     {
         var parameters = new Dictionary<string, object>
         {
@@ -59,7 +60,7 @@ public static class Navigate
         await Shell.Current.GoToAsync(nameof(NumberCustomLevelConfiguration), false, parameters);
     }
 
-    public static async Task ToCustomLevelHistory(NumberConfigurationBase configuration)
+    public static async Task ToCustomLevelHistoryAsync(NumberConfigurationBase configuration)
     {
         var parameters = new Dictionary<string, object>
         {
@@ -69,7 +70,7 @@ public static class Navigate
         await Shell.Current.GoToAsync(nameof(NumberCustomLevelHistory), false, parameters);
     }
 
-    public static void ToYouLostWrongAnswer(string equation, string answer, string correctAnswer, NumberConfigurationBase configuration)
+    public static async Task ToYouLostWrongAnswerAsync(string equation, PossibleAnswer answer, string correctAnswer, NumberConfigurationBase configuration)
     {
         var parameters = new Dictionary<string, object>()
         {
@@ -77,10 +78,10 @@ public static class Navigate
             {nameof(YouLostQueryAttributes.Configuration), configuration }
         };
 
-        Shell.Current.GoToAsync(nameof(YouLost), false, parameters);
+        await Shell.Current.GoToAsync(nameof(YouLost), false, parameters);
     }
 
-    public static void ToYouLostTimeExpired(NumberConfigurationBase configuration)
+    public static async Task ToYouLostTimeExpiredAsync(NumberConfigurationBase configuration)
     {
         var parameters = new Dictionary<string, object>
         {
@@ -88,16 +89,16 @@ public static class Navigate
             {nameof(YouLostQueryAttributes.Configuration), configuration }
         };
 
-        _ = Shell.Current.GoToAsync(nameof(YouLost), false, parameters);
+        await Shell.Current.GoToAsync(nameof(YouLost), false, parameters);
     }
 
-    public static void ToYouWon(NumberConfigurationBase configuration, decimal averageSecondsPerEquation)
+    public static async Task ToYouWonAsync(NumberConfigurationBase configuration, decimal averageSecondsPerEquation)
     {
         var parameters = new Dictionary<string, object>
         {
             {nameof(YouWonQueryParameters.CurrentLevelConfiguration), configuration },
             {nameof(YouWonQueryParameters.AverageSecondsPerLevel), averageSecondsPerEquation }
         };
-        Shell.Current.GoToAsync(nameof(YouWon), false, parameters);
+        await Shell.Current.GoToAsync(nameof(YouWon), false, parameters);
     }
 }

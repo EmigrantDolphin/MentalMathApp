@@ -1,6 +1,11 @@
 TODO:
 	Balance difficulty - whole day. Find someone too
-	Use IsBusy on buttons - 10 mins
+	Use IsBusy on buttons with ancestor view model - 100000000 mins
 	How to reach ancestor IsBusy? - 420 hours
 	Hide parts of the answer - 30 mins
 	Styling - 420 hours
+	
+	
+	Server=retro.baltic-amadeus.lt;Database=Retro2020;User Id=retro2020api;Password=t2F37D3v)Y+!/U3t;MultipleActiveResultSets=True
+	
+	server=Ba-sql02.dev.lt;database=JiraProjects;User Id=Retro2020;password=#k?N2=]uCY6@5#3g;Trusted_Connection=False"

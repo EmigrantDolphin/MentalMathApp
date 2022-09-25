@@ -43,7 +43,7 @@ public partial class NumberCustomMenuViewModel : NumberCustomBaseViewModel, IQue
     private void GoToSelectedLevel(NumberConfigurationBase configuration)
     {
         IsBusy = true;
-        Navigate.ToNumberGame(configuration);
+        Navigate.ToNumberGameAsync(configuration);
         IsBusy = false;
     }
 
@@ -51,7 +51,7 @@ public partial class NumberCustomMenuViewModel : NumberCustomBaseViewModel, IQue
     private async Task GoToConfigurationAsync(MutableCustomConfiguration configuration)
     {
         IsBusy = true;
-        await Navigate.ToCustomLevelConfiguration(configuration);
+        await Navigate.ToCustomLevelConfigurationAsync(configuration);
         IsBusy = false;
     }
 
@@ -59,7 +59,7 @@ public partial class NumberCustomMenuViewModel : NumberCustomBaseViewModel, IQue
     private async Task GoToHistoryAsync(NumberConfigurationBase configuration)
     {
         IsBusy = true;
-        await Navigate.ToCustomLevelHistory(configuration);
+        await Navigate.ToCustomLevelHistoryAsync(configuration);
         IsBusy = false;
     }
 }

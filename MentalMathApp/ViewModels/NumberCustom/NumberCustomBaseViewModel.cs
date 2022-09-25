@@ -9,6 +9,6 @@ public partial class NumberCustomBaseViewModel : BaseViewModel
     [RelayCommand]
     public void GoToNumberCustomMenu()
     {
-        Navigate.ToNumberCustomMenu(NumberTypes.Integer);
+        Navigate.ToNumberCustomMenuAsync(NumberTypes.Integer);
     }
 }

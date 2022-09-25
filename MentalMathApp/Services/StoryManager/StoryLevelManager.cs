@@ -72,7 +72,7 @@ public class StoryLevelManager : ILevelManager
     {
         _storage.ClearStoryProgress();
         await LoadProgress();
-        await Navigate.ToStoryMenu();
+        await Navigate.ToStoryMenuAsync();
     }
 
     private async Task LoadProgress()
