@@ -4,6 +4,7 @@ using MentalMathApp.LevelConfigurations;
 using MentalMathApp.LevelConfigurations.Enums;
 using MentalMathApp.Navigation;
 using MentalMathApp.Services.CustomManager;
+using MentalMathApp.Services.EquationFormers.Models;
 
 namespace MentalMathApp.ViewModels;
 
@@ -13,7 +14,7 @@ public enum YouLostQueryAttributes
     WrongAnswer,
     Configuration
 }
-public record WrongAnswerData(string Equation, string WrongAnswer, string CorrectAnswer);
+public record WrongAnswerData(string Equation, PossibleAnswer WrongAnswer, string CorrectAnswer);
 
 public partial class YouLostViewModel : BaseViewModel, IQueryAttributable
 {
@@ -35,7 +36,8 @@ public partial class YouLostViewModel : BaseViewModel, IQueryAttributable
         {
             var wrongAnswerData = query[nameof(YouLostQueryAttributes.WrongAnswer)] as WrongAnswerData;
             Equation = wrongAnswerData.Equation;
-            WrongAnswer = wrongAnswerData.WrongAnswer;
+            WrongAnswer = wrongAnswerData.WrongAnswer.Answer;
+            WrongHiddenAnswer = wrongAnswerData.WrongAnswer.HiddenAnswer;
             CorrectAnswer = wrongAnswerData.CorrectAnswer;
             IsWrongAnswer = true;
         }
@@ -64,6 +66,8 @@ public partial class YouLostViewModel : BaseViewModel, IQueryAttributable
     [ObservableProperty]
     private string wrongAnswer = "";
     [ObservableProperty]
+    private string wrongHiddenAnswer = "";
+    [ObservableProperty]
     private string correctAnswer = "";
     private NumberConfigurationBase _configuration;
 
@@ -71,23 +75,21 @@ public partial class YouLostViewModel : BaseViewModel, IQueryAttributable
     private async Task TryAgainAsync()
     {
         IsBusy = true;
-        await Navigate.GoBack();
-        IsBusy = false;
+        await Navigate.GoBackAsync();
     }
 
     [RelayCommand]
     private async Task GoToMenuAsync()
     {
+        IsBusy = true;
         if (_configuration.GameType == GameType.Story)
         {
-            IsBusy = true;
-            await Navigate.ToStoryMenu();
-            IsBusy = false;
+            await Navigate.ToStoryMenuAsync();
         }
 
         if (_configuration.GameType == GameType.Custom)
         {
-            Navigate.ToNumberCustomMenu(_configuration.NumberType);
+            await Navigate.ToNumberCustomMenuAsync(_configuration.NumberType);
         }
     }
 }

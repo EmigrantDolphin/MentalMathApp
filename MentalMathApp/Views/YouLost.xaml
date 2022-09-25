@@ -38,7 +38,7 @@
                     Margin="0, 0, 0, 20"
                     Text="You picked the wrong answer!" />
                 <Grid ColumnDefinitions="*, *"
-                      RowDefinitions="*, *, *, *">
+                      RowDefinitions="*, *, *, *, *">
                     <Label
                         HorizontalOptions="End"
                         Margin="0, 0, 10, 0"
@@ -66,6 +66,15 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding WrongAnswer}" />
+                    <Label
+                        HorizontalOptions="End"
+                        Margin="0, 0, 10, 0"
+                        Grid.Row="4"
+                        Text="Your picked answer: " />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Text="{Binding WrongHiddenAnswer}" />
                 </Grid>
                 <VerticalStackLayout.Triggers>
                     <DataTrigger
@@ -83,14 +92,14 @@
         <Button 
             WidthRequest="150"
             Margin="0, 0, 0, 40"
-            Command="{Binding TryAgainCommand}"
             IsEnabled="{Binding IsNotBusy}"
+            Command="{Binding TryAgainCommand}"
             Text="Try again!" />
         <Button
             WidthRequest="150"
             Margin="0, 0, 0, 40"
-            Command="{Binding GoToMenuCommand}"
             IsEnabled="{Binding IsNotBusy}"
+            Command="{Binding GoToMenuCommand}"
             Text="Go to menu" />
     </VerticalStackLayout>
 </ContentPage>

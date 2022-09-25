@@ -48,6 +48,7 @@ public partial class StoryMenuViewModel : BaseViewModel
 
         IntegerLevels = LevelModel.ToModel(integerLevels, beatenIntegerLevels).ToArray();
         RationalLevels = LevelModel.ToModel(rationalLevels, beatenRationalLevels).ToArray();
+        IsBusy = false;
     }
 
     [ObservableProperty]
@@ -59,9 +60,10 @@ public partial class StoryMenuViewModel : BaseViewModel
     [RelayCommand]
     private void GoToSelectedLevel(LevelModel level)
     {
+        IsBusy = true;
         var levelDetails = level.ToLevelDetails();
         var configuration = _levelManager.GetConfiguration(levelDetails);
-        Navigate.ToNumberGame(configuration);
+        _ = Navigate.ToNumberGameAsync(configuration);
     }
 
     [RelayCommand]

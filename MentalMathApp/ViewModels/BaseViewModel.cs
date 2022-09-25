@@ -20,19 +20,19 @@ public partial class BaseViewModel : ObservableObject
     [RelayCommand]
     private void GoToStoryMenu()
     {
-        _ = Navigate.ToStoryMenu();
+        _ = Navigate.ToStoryMenuAsync();
     }
 
     [RelayCommand]
-    public void GoBack()
+    public async Task GoBackAsync()
     {
-        _ = Navigate.GoBack();
+        await Navigate.GoBackAsync();
     }
 
     [RelayCommand]
-    private void GoToMainMenu()
+    private async Task GoToMainMenuAsync()
     {
-        Navigate.ToMainMenu();
+        await Navigate.ToMainMenuAsync();
     }
 
     public CancellationToken CreateCancellationToken()

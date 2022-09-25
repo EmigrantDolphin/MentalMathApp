@@ -67,14 +67,15 @@ public partial class NumberCustomConfigurationViewModel : NumberCustomBaseViewMo
     }
 
     [RelayCommand]
-    private void SaveChanges()
+    private async Task SaveChangesAsync()
     {
+        IsBusy = true;
         _configuration.MutableSecondsPerEquation = SecondsPerEquation;
         _configuration.MutableNumberOfEquations = NumberOfEquations;
         _configuration.MutableOperations = SelectedNumberOperations.Select(x => (NumberOperations) x).ToArray();
 
         _levelManager.UpdateMutableConfigurations();
 
-        GoBack();
+        await GoBackAsync();
     }
 }

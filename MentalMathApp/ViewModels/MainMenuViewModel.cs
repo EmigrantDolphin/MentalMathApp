@@ -29,19 +29,19 @@ public partial class MainMenuViewModel : BaseViewModel
     [RelayCommand]
     public void GoToIntegerNumberCustomMenu()
     {
-        Navigate.ToNumberCustomMenu(NumberTypes.Integer);
+        Navigate.ToNumberCustomMenuAsync(NumberTypes.Integer);
     }
 
     [RelayCommand]
     public void GoToRationalNumberCustomMenu()
     {
-        Navigate.ToNumberCustomMenu(NumberTypes.Rational);
+        Navigate.ToNumberCustomMenuAsync(NumberTypes.Rational);
     }
 
     [RelayCommand]
     public void GoToLastPlayedConfigurationGame()
     {
-        Navigate.ToNumberGame(_lastPlayedCustomConfiguration);
+        Navigate.ToNumberGameAsync(_lastPlayedCustomConfiguration);
     }
 
     [RelayCommand]

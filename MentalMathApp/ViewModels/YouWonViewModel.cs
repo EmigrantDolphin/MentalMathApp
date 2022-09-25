@@ -6,6 +6,8 @@ using MentalMathApp.LevelConfigurations.Models;
 using MentalMathApp.Navigation;
 using MentalMathApp.Services.CustomManager;
 using MentalMathApp.Services.StoryManager;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace MentalMathApp.ViewModels;
 
@@ -15,7 +17,7 @@ public enum YouWonQueryParameters
     AverageSecondsPerLevel
 }
 
-public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
+public partial class YouWonViewModel : BaseViewModel, IQueryAttributable, INotifyPropertyChanged
 {
     private readonly ILevelManager _levelManager;
     private readonly IHistoryManager _historyManager;
@@ -69,8 +71,9 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
     public string BeatenLevelText => $"You've beaten level {currentLevel?.Name}!";
 
     [RelayCommand]
-    private async Task NextLevel()
+    private async Task NextLevelAsync()
     {
+        IsBusy = true;
         if (_nextLevel is null)
         {
             return;
@@ -78,13 +81,14 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
 
         var configuration = _levelManager.GetConfiguration(new(_nextLevel, CurrentLevel.NumberType));
 
-        await Navigate.ToNumberGame(configuration);
+        await Navigate.ToNumberGameAsync(configuration);
     }
 
     [RelayCommand]
     private async Task AgainAsync()
     {
-        await Navigate.GoBack();
+        IsBusy = true;
+        await Navigate.GoBackAsync();
     }
 
     [RelayCommand]
@@ -94,14 +98,12 @@ public partial class YouWonViewModel : BaseViewModel, IQueryAttributable
 
         if (_beatenConfiguration.GameType == GameType.Story)
         {
-            await Navigate.ToStoryMenu();
+            await Navigate.ToStoryMenuAsync();
         }
         
         if (_beatenConfiguration.GameType == GameType.Custom)
         {
-            await Navigate.ToNumberCustomMenu(_beatenConfiguration.NumberType);
+            await Navigate.ToNumberCustomMenuAsync(_beatenConfiguration.NumberType);
         }
-
-        IsBusy = false;
     }
 }

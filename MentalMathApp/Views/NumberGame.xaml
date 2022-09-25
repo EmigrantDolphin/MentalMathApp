@@ -4,6 +4,7 @@
              x:Class="MentalMathApp.Views.NumberGame"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
              x:DataType="viewModel:NumberGameViewModel"
+             xmlns:equationModel="clr-namespace:MentalMathApp.Services.EquationFormers.Models"
              Shell.PresentationMode="NotAnimated"
              Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
@@ -39,9 +40,9 @@
                 <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate >
-                <DataTemplate >
+                <DataTemplate x:DataType="equationModel:PossibleAnswer">
                     <VerticalStackLayout>
-                        <Button Text="{Binding}"
+                        <Button Text="{Binding HiddenAnswer}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NumberGameViewModel}}, Path=SubmitAnswerCommand}"
                                 CommandParameter="{Binding}"
                                 BackgroundColor="Transparent"

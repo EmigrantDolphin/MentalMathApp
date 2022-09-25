@@ -65,9 +65,9 @@
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="viewModel:LevelModel" >
                         <Button Text="{Binding LevelName}"
+                                IsEnabled="{Binding IsAvailable}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:StoryMenuViewModel}}, Path=GoToSelectedLevelCommand}"
                                 CommandParameter="{Binding}"
-                                IsEnabled="{Binding IsAvailable}"
                                 WidthRequest="50"
                                 HeightRequest="50">
                             <Button.Triggers>
@@ -84,12 +84,12 @@
             </CollectionView>
         </VerticalStackLayout>
         <Button Grid.Row="2"
-                IsEnabled="{Binding IsNotBusy}"
                 HeightRequest="40"
                 VerticalOptions="End"
                 HorizontalOptions="End"
                 Margin="20"
                 Command="{Binding ResetStoryCommand}"
+                IsEnabled="{Binding IsNotBusy}"
                 Text="Reset"/>
     </Grid>
 </ContentPage>
