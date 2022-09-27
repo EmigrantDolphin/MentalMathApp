@@ -4,9 +4,7 @@
              x:Class="MentalMathApp.Views.StoryMenu"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
              x:DataType="viewModel:StoryMenuViewModel"
-             Shell.PresentationMode="NotAnimated"
-             Shell.BackgroundColor="{StaticResource light2}"
-             Shell.ForegroundColor="Black">
+             Shell.PresentationMode="NotAnimated">
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoToMainMenuCommand}" />
@@ -33,6 +31,7 @@
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:StoryMenuViewModel}}, Path=GoToSelectedLevelCommand}"
                                 CommandParameter="{Binding}"
                                 IsEnabled="{Binding IsAvailable}"
+                                BackgroundColor="LightGreen"
                                 WidthRequest="50"
                                 HeightRequest="50">
                             <Button.Triggers>
@@ -41,6 +40,12 @@
                                              Value="True">
                                     <Setter Property="BackgroundColor"
                                             Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button"
+                                             Binding="{Binding IsAvailable}"
+                                             Value="False">
+                                    <Setter Property="BackgroundColor"
+                                            Value="{AppThemeBinding Dark={StaticResource darkButtonDisabled}}"/>
                                 </DataTrigger>
                             </Button.Triggers>
                         </Button>

@@ -27,21 +27,21 @@ public partial class MainMenuViewModel : BaseViewModel
     private bool isLastPlayedConfigurationAvailable;
 
     [RelayCommand]
-    public void GoToIntegerNumberCustomMenu()
+    public async Task GoToIntegerNumberCustomMenuAsync()
     {
-        Navigate.ToNumberCustomMenuAsync(NumberTypes.Integer);
+        await Navigate.ToNumberCustomMenuAsync(NumberTypes.Integer);
     }
 
     [RelayCommand]
-    public void GoToRationalNumberCustomMenu()
+    public async Task GoToRationalNumberCustomMenuAsync()
     {
-        Navigate.ToNumberCustomMenuAsync(NumberTypes.Rational);
+        await Navigate.ToNumberCustomMenuAsync(NumberTypes.Rational);
     }
 
     [RelayCommand]
-    public void GoToLastPlayedConfigurationGame()
+    public async Task GoToLastPlayedConfigurationGameAsync()
     {
-        Navigate.ToNumberGameAsync(_lastPlayedCustomConfiguration);
+        await Navigate.ToNumberGameAsync(_lastPlayedCustomConfiguration);
     }
 
     [RelayCommand]

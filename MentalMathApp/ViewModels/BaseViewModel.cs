@@ -18,9 +18,9 @@ public partial class BaseViewModel : ObservableObject
     private List<CancellationTokenSource> cancellationSources = new();
 
     [RelayCommand]
-    private void GoToStoryMenu()
+    private async Task GoToStoryMenuAsync()
     {
-        _ = Navigate.ToStoryMenuAsync();
+        await Navigate.ToStoryMenuAsync();
     }
 
     [RelayCommand]
