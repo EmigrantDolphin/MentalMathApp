@@ -4,9 +4,7 @@
              x:Class="MentalMathApp.Views.NumberCustomMenu"
              xmlns:viewmodel="clr-namespace:MentalMathApp.ViewModels.NumberCustom"
              x:DataType="viewmodel:NumberCustomMenuViewModel"
-             Shell.PresentationMode="NotAnimated"
-             Shell.BackgroundColor="{StaticResource light2}"
-             Shell.ForegroundColor="Black">
+             Shell.PresentationMode="NotAnimated">
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoToMainMenuCommand}" />

@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MentalMathApp"
     xmlns:views="clr-namespace:MentalMathApp.Views"
+    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource light1}, Dark={StaticResource dark1}}"
+    Shell.ForegroundColor="{AppThemeBinding Light={StaticResource light4}, Dark={StaticResource dark4}}"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent Shell.NavBarIsVisible="False"
-                  ContentTemplate="{DataTemplate views:MainMenu}"
+    <ShellContent ContentTemplate="{DataTemplate views:MainMenu}"
                   Route="MainPage">
     </ShellContent>
 

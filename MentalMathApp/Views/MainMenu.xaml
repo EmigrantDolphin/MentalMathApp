@@ -4,8 +4,7 @@
              x:Class="MentalMathApp.Views.MainMenu"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
              x:DataType="viewModel:MainMenuViewModel"
-             Shell.BackgroundColor="{StaticResource light2}"
-             Shell.ForegroundColor="Black">
+             Shell.NavBarIsVisible="False">
 
     <VerticalStackLayout Spacing="40" Padding="60" Margin="0, 60, 0,0">
         <Grid>

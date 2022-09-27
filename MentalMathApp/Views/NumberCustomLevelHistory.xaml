@@ -4,9 +4,7 @@
              x:Class="MentalMathApp.Views.NumberCustomLevelHistory"
              xmlns:viewmodel="clr-namespace:MentalMathApp.ViewModels.NumberCustom"
              x:DataType="viewmodel:NumberCustomLevelHistoryViewModel"
-             Shell.PresentationMode="NotAnimated"
-             Shell.BackgroundColor="{StaticResource light2}"
-             Shell.ForegroundColor="Black">
+             Shell.PresentationMode="NotAnimated">
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackCommand}" />
