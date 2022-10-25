@@ -94,11 +94,13 @@
             Margin="0, 0, 0, 40"
             IsEnabled="{Binding IsNotBusy}"
             Command="{Binding TryAgainCommand}"
+            BackgroundColor="{StaticResource menuButtonColor}"
             Text="Try again!" />
         <Button
             WidthRequest="150"
             Margin="0, 0, 0, 40"
             IsEnabled="{Binding IsNotBusy}"
+            BackgroundColor="{StaticResource menuButtonColor}"
             Command="{Binding GoToMenuCommand}"
             Text="Go to menu" />
     </VerticalStackLayout>

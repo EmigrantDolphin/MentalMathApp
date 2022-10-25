@@ -5,7 +5,7 @@ namespace MentalMathApp.Services.EquationFormers.Models;
 public record PossibleAnswer(string Answer, string HiddenAnswer)
 {
     public static readonly char PreappendChar = '*';
-    public static readonly char HiddenChar = 'x';
+    public static readonly char HiddenChar = '•';
     public static PossibleAnswer[] Hide(string[] answers)
     {
         var possibleAnswers = answers.Select(x => new PossibleAnswer(x, x)).ToList();

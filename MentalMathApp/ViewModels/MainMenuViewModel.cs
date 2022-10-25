@@ -48,8 +48,8 @@ public partial class MainMenuViewModel : BaseViewModel
     public void ShowCompeteMessage()
     {
         Shell.Current.DisplayAlert("Compete online with others!", "This feature is not developed." +
-            "But it will if the app reaches at least 10k downloads until 2023." +
-            "You will be able to create and join public games and compete who will solve equations faster.", "Ok");
+            "But it will if the app reaches at least 10k downloads by 2023." +
+            "You will be able to create/join public games and compete to learn who solves equations faster!", "Ok, I will tell my friends :)");
     }
 
     private async Task LoadLastPlayedConfiguration()

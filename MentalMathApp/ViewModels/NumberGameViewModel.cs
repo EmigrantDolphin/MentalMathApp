@@ -49,7 +49,7 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
     [NotifyPropertyChangedFor(nameof(SelectedLevelText))]
     public LevelDetails selectedLevel;
 
-    public string SelectedLevelText => "Selected level: " + selectedLevel?.Name;
+    public string SelectedLevelText => "Level " + selectedLevel?.Name;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(EquationsAnsweredText))]
@@ -123,7 +123,7 @@ public partial class NumberGameViewModel : BaseViewModel, IQueryAttributable
 
             if (EquationsAnswered < _numberOfEquations)
             {
-                await Navigate.ToYouLostTimeExpiredAsync(_numberConfiguration);
+                // await Navigate.ToYouLostTimeExpiredAsync(_numberConfiguration);
             }
         }, ct);
     }

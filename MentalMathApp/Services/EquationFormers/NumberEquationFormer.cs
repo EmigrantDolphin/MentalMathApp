@@ -136,9 +136,9 @@ public class NumberEquationFormer
 
 	private int[] GetPossibleAnswers(int realAnswer, NumberOperations operation)
 	{
-		var possibleAnswers = new List<int>();
+		var possibleAnswers = new List<int>() { realAnswer };
 
-		for (int i = 0; i < 3; i++)
+		while (possibleAnswers.Count < 4)
 		{
             var (randomFirstNumber, randomSecondNumber) =
                 GetRandomNumbers(
@@ -147,36 +147,14 @@ public class NumberEquationFormer
                     _numberConfiguration.IntervalTo);
 
             var answer = operation.PerformOperation(randomFirstNumber, randomSecondNumber);
-			possibleAnswers.Add(answer);
-		}
-
-		possibleAnswers.Add(realAnswer);
-		possibleAnswers = possibleAnswers.OrderByDescending(x => x).ToList();
-
-		return possibleAnswers.ToArray();
-	}
-
-	private int[] GetRandomValues(int count)
-	{
-		var differenceList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-		int[] differences = new int[count];
-		for (int i = 0; i < count; i++)
-		{
-			var differenceIndex = _random.Next(0, differenceList.Count);
-			differences[i] = differenceList[differenceIndex];
-
-			differenceList.RemoveAt(differenceIndex);
-		}
-
-		for (int i = 0; i < count; i++)
-		{
-			if (_random.Next(0,2) == 0)
+			if (!possibleAnswers.Contains(answer))
 			{
-				differences[i] = -differences[i];
+                possibleAnswers.Add(answer);
 			}
 		}
 
-		return differences;
+		possibleAnswers = possibleAnswers.OrderByDescending(x => x).ToList();
+
+		return possibleAnswers.ToArray();
 	}
 }
