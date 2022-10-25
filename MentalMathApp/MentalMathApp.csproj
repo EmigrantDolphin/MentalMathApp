@@ -15,7 +15,7 @@
 		<ApplicationTitle>MentalMathApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mentalmathapp</ApplicationId>
+		<ApplicationId>com.normanb.mentalmathapp</ApplicationId>
 		<ApplicationIdGuid>0BF15D40-C957-41C7-9A21-8EBE4ECA4F01</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -29,7 +29,13 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
-
+  <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+      <AndroidKeyStore>True</AndroidKeyStore>
+      <AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+      <AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+      <AndroidSigningKeyPass></AndroidSigningKeyPass>
+      <AndroidSigningStorePass></AndroidSigningStorePass>
+  </PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -55,6 +61,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Components\ShadowButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MainMenu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -33,7 +33,10 @@ public partial class NumberCustomConfigurationViewModel : NumberCustomBaseViewMo
 
         AvailableNumberOperationss.Add(NumberOperations.Addition);
         AvailableNumberOperationss.Add(NumberOperations.Subtraction);
-        AvailableNumberOperationss.Add(NumberOperations.Division);
+        if (_configuration.NumberType != NumberTypes.Rational)
+        {
+            AvailableNumberOperationss.Add(NumberOperations.Division);
+        }
         AvailableNumberOperationss.Add(NumberOperations.Multiplication);
 
         foreach (var operation in _configuration.Operations)

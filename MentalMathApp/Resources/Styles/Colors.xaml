@@ -14,5 +14,8 @@
     <Color x:Key="dark3">#719FB0</Color>
     <Color x:Key="dark4">#A0C1B8</Color>
 
-    <Color x:Key="darkButtonDisabled">Gray</Color>
+    <Color x:Key="menuButtonColor">#325aa8</Color>
+
+    <Color x:Key="darkButtonDisabled">#a2b5db</Color>
+
 </ResourceDictionary>

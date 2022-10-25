@@ -21,6 +21,7 @@
                       ColumnSpacing="15">
                     <Button
                         Text="{Binding Name}"
+                        WidthRequest="180"
                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:NumberCustomMenuViewModel}}, Path=GoToSelectedLevelCommand}"
                         CommandParameter="{Binding Configuration}"
                         Margin="30, 0, 0, 0"

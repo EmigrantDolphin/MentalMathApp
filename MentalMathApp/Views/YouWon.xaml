@@ -23,6 +23,7 @@
         <Button
             IsEnabled="{Binding IsNotBusy}"
             Command="{Binding NextLevelCommand}"
+            BackgroundColor="{StaticResource menuButtonColor}"
             WidthRequest="150"
             Margin="0, 0, 0, 40"
             Text="Next level">
@@ -37,6 +38,7 @@
         </Button>
         <Button 
             IsEnabled="{Binding IsNotBusy}"
+            BackgroundColor="{StaticResource menuButtonColor}"
             Command="{Binding AgainCommand}"
             Margin="0, 0, 0, 40"
             WidthRequest="150"
@@ -44,6 +46,7 @@
         <Button 
             IsEnabled="{Binding IsNotBusy}"
             Command="{Binding GoToMenuCommand}"
+            BackgroundColor="{StaticResource menuButtonColor}"
             WidthRequest="150"
             Text="Go to menu" />
     </VerticalStackLayout>

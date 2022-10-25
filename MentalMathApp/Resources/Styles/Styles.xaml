@@ -5,12 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style TargetType="Button" x:Key="ButtonMenu" >
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource light1}, Dark={StaticResource dark1}}"/>
-        <Setter Property="BorderWidth" Value="2"/>
-        <Setter Property="CornerRadius" Value="90"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource menuButtonColor}, Dark={StaticResource dark1}}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="WidthRequest" Value="200"/>
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource light3}, Dark={StaticResource dark2}}"/>
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource light4}, Dark={StaticResource dark4}}"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource light1}, Dark={StaticResource dark4}}"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource menuButtonColor}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonStoryMenu">
@@ -22,7 +28,7 @@
     </Style>
 
     <Style TargetType="Page" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource light1}, Dark={StaticResource dark1}}"/>
+        <Setter Property="BackgroundColor" Value="White"/>
     </Style>
 
     <Style TargetType="Shell">

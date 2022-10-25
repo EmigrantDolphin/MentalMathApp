@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MentalMathApp.Views.MainMenu"
              xmlns:viewModel="clr-namespace:MentalMathApp.ViewModels"
+             xmlns:components="clr-namespace:MentalMathApp.Components"
              x:DataType="viewModel:MainMenuViewModel"
              Shell.NavBarIsVisible="False">
 
@@ -25,6 +26,7 @@
             <VerticalStackLayout Spacing="20" Grid.Row="1">
                 <Label Text="Custom games"
                        FontSize="18"
+                       TextColor="Black"
                        HorizontalOptions="Center"/>
                 <Button
                     Text="Integers"
@@ -32,7 +34,7 @@
                     Command="{Binding GoToIntegerNumberCustomMenuCommand}"
                     IsEnabled="{Binding IsNotBusy}"/>
                 <Button
-                    Text="Decimals"
+                    Text="Rationals"
                     Style="{StaticResource ButtonMenu}"
                     Command="{Binding GoToRationalNumberCustomMenuCommand}"
                     IsEnabled="{Binding IsNotBusy}"/>
