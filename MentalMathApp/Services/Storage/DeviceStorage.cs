@@ -141,6 +141,6 @@ public class DeviceStorage : IDeviceStorage
 	{
 		_storage.Remove(Keys.Story.BeatenIntegerLevels);
 		_storage.Remove(Keys.Story.BeatenRationalLevels);
-		_storage.Remove(Keys.Custom.CustomConfigurations);
+		// _storage.Remove(Keys.Custom.CustomConfigurations);
 	}
 }
